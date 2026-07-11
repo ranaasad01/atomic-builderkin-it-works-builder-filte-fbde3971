@@ -5,11 +5,9 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { footerLinks, BRAND } from "@/lib/data";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
-import { useTranslations } from "next-intl";
 
 export default function Footer() {
   const pathname = usePathname();
-  const t = useTranslations();
 
   function handleAnchorClick(
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -47,23 +45,23 @@ export default function Footer() {
               href="/"
               className="font-mono text-[13px] tracking-widest uppercase text-[#16130F] hover:text-[#1F3AA8] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F3AA8] rounded-sm"
             >
-              {t("footer.brand")}
+              {BRAND.name}
             </Link>
             <p className="mt-4 text-[13px] text-[#16130F]/60 leading-relaxed max-w-[28ch]">
-              {t("footer.tagline")}
+              {BRAND.tagline}
             </p>
             <p className="mt-6 text-[12px] font-mono text-[#16130F]/40 tracking-wide">
-              {t("footer.noTokens")}
+              No tokens. No smart contracts. Real paperwork.
             </p>
           </motion.div>
 
           {/* Navigation column */}
           <motion.div variants={fadeInUp}>
             <p className="text-[11px] font-mono tracking-widest uppercase text-[#16130F]/40 mb-4">
-              {t("footer.navHeading")}
+              Navigate
             </p>
             <ul className="flex flex-col gap-2.5" role="list">
-              {footerLinks.slice(0, 5).map((link) => {
+              {footerLinks.map((link) => {
                 const resolvedHref = getHref(link.href, link.type);
                 const isActive =
                   link.type === "route" && pathname === link.href;
@@ -76,9 +74,7 @@ export default function Footer() {
                         onClick={(e) => handleAnchorClick(e, link.href)}
                         className="text-[13px] text-[#16130F]/60 hover:text-[#16130F] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F3AA8] rounded-sm"
                       >
-                        {t(
-                          `nav.${link.label.toLowerCase().replace(/\s+/g, "")}`
-                        )}
+                        {link.label}
                       </Link>
                     ) : (
                       <Link
@@ -90,9 +86,7 @@ export default function Footer() {
                         }`}
                         aria-current={isActive ? "page" : undefined}
                       >
-                        {t(
-                          `nav.${link.label.toLowerCase().replace(/\s+/g, "")}`
-                        )}
+                        {link.label}
                       </Link>
                     )}
                   </li>
@@ -104,45 +98,33 @@ export default function Footer() {
           {/* Legal / contact column */}
           <motion.div variants={fadeInUp}>
             <p className="text-[11px] font-mono tracking-widest uppercase text-[#16130F]/40 mb-4">
-              {t("footer.legalHeading")}
+              Contact
             </p>
-            <ul className="flex flex-col gap-2.5" role="list">
-              <li>
-                <Link
-                  href="/swap-agreements"
-                  className="text-[13px] text-[#16130F]/60 hover:text-[#16130F] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F3AA8] rounded-sm"
-                >
-                  {t("footer.sampleAgreements")}
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${BRAND.contactEmail}`}
-                  className="text-[13px] text-[#16130F]/60 hover:text-[#16130F] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F3AA8] rounded-sm"
-                >
-                  {t("footer.contact")}
-                </a>
-              </li>
-            </ul>
-
-            <div className="mt-8 pt-8 border-t border-[#16130F]/10">
-              <p className="text-[12px] text-[#16130F]/40 leading-relaxed">
-                {t("footer.disclaimer")}
-              </p>
-            </div>
+            <p className="text-[13px] text-[#16130F]/60 leading-relaxed">
+              {BRAND.contactName}
+            </p>
+            <a
+              href={`mailto:${BRAND.contactEmail}`}
+              className="text-[13px] text-[#1F3AA8] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F3AA8] rounded-sm"
+            >
+              {BRAND.contactEmail}
+            </a>
+            <p className="mt-8 text-[11px] font-mono text-[#16130F]/30 tracking-wide">
+              US (Delaware LLC) &amp; UK (Ltd) · Day one
+            </p>
           </motion.div>
         </div>
 
         {/* Bottom bar */}
         <motion.div
           variants={fadeInUp}
-          className="mt-12 pt-6 border-t border-[#16130F]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
+          className="mt-16 pt-8 border-t border-[#16130F]/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
         >
-          <p className="text-[12px] font-mono text-[#16130F]/40 tracking-wide">
-            {t("footer.copyright")}
+          <p className="text-[11px] font-mono text-[#16130F]/30 tracking-wide">
+            &copy; {new Date().getFullYear()} {BRAND.name}. Not a broker. Not an exchange.
           </p>
-          <p className="text-[12px] font-mono text-[#16130F]/40 tracking-wide">
-            {t("footer.jurisdiction")}
+          <p className="text-[11px] font-mono text-[#16130F]/30 tracking-wide">
+            2% on cash swaps &middot; 0% on equity swaps
           </p>
         </motion.div>
       </motion.div>

@@ -42,6 +42,12 @@ export const navLinks: NavLink[] = [
   { label: "Swap Listings", href: "/swap-listing", type: "route" },
   { label: "Agreements", href: "/swap-agreements", type: "route" },
   { label: "About", href: "/about", type: "route" },
+  { label: "Feed", href: "/feed", type: "route" },
+  { label: "All Projects", href: "/projects", type: "route" },
+  { label: "How It Works", href: "/how-it-works", type: "route" },
+  { label: "Pricing", href: "/pricing", type: "route" },
+  { label: "Legal", href: "/legal", type: "route" },
+  { label: "FAQ", href: "/faq", type: "route" },
 ];
 
 export const footerLinks: NavLink[] = [
@@ -50,6 +56,10 @@ export const footerLinks: NavLink[] = [
   { label: "Swap Listings", href: "/swap-listing", type: "route" },
   { label: "Agreements", href: "/swap-agreements", type: "route" },
   { label: "About", href: "/about", type: "route" },
-  { label: "How it works", href: "#how-it-works", type: "anchor" },
-  { label: "Pricing", href: "#pricing", type: "anchor" },
+  { label: "Feed", href: "/feed", type: "route" },
+  { label: "All Projects", href: "/projects", type: "route" },
+  { label: "How It Works", href: "/how-it-works", type: "route" },
+  { label: "Pricing", href: "/pricing", type: "route" },
+  { label: "Legal", href: "/legal", type: "route" },
+  { label: "FAQ", href: "/faq", type: "route" },
 ];
